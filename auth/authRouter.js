@@ -23,6 +23,21 @@ router.post("/register", async (req, res) => {
   }
 });
 
+router.post("/login", async (req, res) => {
+  const { username, password } = req.body;
+  try {
+    const checkUser = await db.findUserByName(username);
+    if (checkUser && bcrypt.compareSync(password, checkUser.password)) {
+      res.status(200).json({ message: `Welcome ${username}` });
+    } else {
+      res.status(400).json({ error: "Please provide proper credentials" });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: "There was a problem logging you in" });
+  }
+});
+
 function createToken(user) {
   const payload = {
     subject: user.id,
