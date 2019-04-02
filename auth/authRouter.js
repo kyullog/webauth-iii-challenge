@@ -28,7 +28,8 @@ router.post("/login", async (req, res) => {
   try {
     const checkUser = await db.findUserByName(username);
     if (checkUser && bcrypt.compareSync(password, checkUser.password)) {
-      res.status(200).json({ message: `Welcome ${username}` });
+      const token = createToken(checkUser);
+      res.status(200).json({ message: `Welcome ${username}`, token: token });
     } else {
       res.status(400).json({ error: "Please provide proper credentials" });
     }
