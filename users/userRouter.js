@@ -5,13 +5,14 @@ const db = require("../data/helpers/dbHelper.js");
 
 router.get("/", restricted, async (req, res) => {
   try {
-    const users = await db.getUsers();
+    const users = await db.getUsersByDept(req.decodedJwt.department);
     if (users) {
       res.status(200).json(users);
     } else {
       res.status(404).json({ message: "no users found" });
     }
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: "There was a problem getting users" });
   }
 });

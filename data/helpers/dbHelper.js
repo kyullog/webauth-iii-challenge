@@ -4,7 +4,8 @@ module.exports = {
   findUserById,
   findUserByName,
   registerUser,
-  getUsers
+  getUsers,
+  getUsersByDept
 };
 
 function findUserById(id) {
@@ -26,4 +27,8 @@ async function registerUser(user) {
 
 function getUsers() {
   return db("users");
+}
+
+function getUsersByDept(department) {
+  return db("users").where({ department });
 }
