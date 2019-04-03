@@ -8,15 +8,15 @@ module.exports = (req, res, next) => {
   const token = req.headers.authorization;
 
   if (token) {
-    jwt.verify(token, jwtSecret, (err, decodedToken) => {
+    jwt.verify(token, secret, (err, decodedToken) => {
       if (err) {
-        res.status(401).json({ error: "user not verified" });
+        res.status(401).json({ error: "You shall not pass" });
       } else {
         req.decodedJwt = decodedToken;
         next();
       }
     });
   } else {
-    res.status(401).json({ error: "Invalid credentials" });
+    res.status(401).json({ error: "You shall not pass!" });
   }
 };
