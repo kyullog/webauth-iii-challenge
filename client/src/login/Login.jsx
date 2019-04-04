@@ -4,7 +4,8 @@ import axios from "axios";
 class Login extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    error: null
   };
 
   render() {
@@ -32,6 +33,9 @@ class Login extends Component {
           />
           <button type="submit">Log In</button>
         </form>
+        {this.state.error && (
+          <p className="warning">Please provide correct credentials</p>
+        )}
       </>
     );
   }
@@ -44,15 +48,17 @@ class Login extends Component {
 
   submitHandler = e => {
     e.preventDefault();
-    const user = this.state;
+    const { username, password } = this.state;
+    const user = { username, password };
     axios
       .post("http://localhost:2525/api/auth/login", user)
       .then(res => {
         localStorage.setItem("token", res.data.token);
+        this.props.history.push("/users");
         console.log(res);
       })
       .catch(err => {
-        console.log(err);
+        this.setState({ error: err.message });
       });
   };
 }
