@@ -11,12 +11,12 @@ class App extends Component {
       <div className="App">
         <header>
           <nav>
-            <NavLink to="/login">LogIn</NavLink>
+            <NavLink to="/signin">Sign In</NavLink>
             &nbsp; | &nbsp;
             <NavLink to="/users">Users</NavLink>
           </nav>
         </header>
-        <Route path="/login" component={Login} />
+        <Route path="/signin" component={Login} />
         <Route path="/users" component={Users} />
       </div>
     );
