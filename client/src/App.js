@@ -24,9 +24,9 @@ class App extends Component {
             &nbsp; | &nbsp;
             <NavLink to="/users">Users</NavLink>
             &nbsp; | &nbsp;
-            <button id="logout" onClick={this.clickHandler}>
+            <NavLink to="/signin" onClick={this.clickHandler}>
               Logout
-            </button>
+            </NavLink>
           </nav>
         </header>
         <Route path="/signin" component={Login} />
