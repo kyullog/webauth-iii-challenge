@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, NavLink } from "react-router-dom";
+import { Route, NavLink, withRouter } from "react-router-dom";
 
 import Login from "./login/Login";
 import Users from "./users/Users";
@@ -8,6 +8,11 @@ import Register from "./signin/Register";
 import "./App.css";
 
 class App extends Component {
+  clickHandler = e => {
+    localStorage.removeItem("token");
+    this.props.history.push("/signin");
+  };
+
   render() {
     return (
       <div className="App">
@@ -18,6 +23,10 @@ class App extends Component {
             <NavLink to="/signin">Sign In</NavLink>
             &nbsp; | &nbsp;
             <NavLink to="/users">Users</NavLink>
+            &nbsp; | &nbsp;
+            <button id="logout" onClick={this.clickHandler}>
+              Logout
+            </button>
           </nav>
         </header>
         <Route path="/signin" component={Login} />
@@ -28,4 +37,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default withRouter(App);
