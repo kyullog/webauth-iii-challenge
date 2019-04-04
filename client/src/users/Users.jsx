@@ -9,11 +9,16 @@ class Users extends Component {
 
   componentDidMount() {
     const token = localStorage.getItem("token");
-    const headers = { authorization: token };
-    axios
-      .get(`http://localhost:2525/api/users`, { headers })
-      .then(res => this.setState({ users: res.data, status: res.status }))
-      .catch(err => console.log(console.log(err)));
+    console.log(token);
+    if (token) {
+      const headers = { authorization: token };
+      axios
+        .get(`http://localhost:2525/api/users`, { headers })
+        .then(res => this.setState({ users: res.data, status: res.status }))
+        .catch(err => console.log(console.log(err)));
+    } else {
+      this.props.history.push("/signin");
+    }
   }
 
   render() {
@@ -22,8 +27,8 @@ class Users extends Component {
         <ul>
           {this.state.users.map(user => (
             <li key={user.id}>
-              Username: {user.username} | Department: {user.department} |
-              Password: {user.password}
+              <h3>Username: {user.username}</h3>
+              <h4>Department: {user.department}</h4>
             </li>
           ))}
         </ul>
