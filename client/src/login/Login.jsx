@@ -55,7 +55,6 @@ class Login extends Component {
       .then(res => {
         localStorage.setItem("token", res.data.token);
         this.props.history.push("/users");
-        console.log(res);
       })
       .catch(err => {
         this.setState({ error: err.message });
