@@ -21,7 +21,10 @@ class Users extends Component {
       <>
         <ul>
           {this.state.users.map(user => (
-            <li key={user.id}>{user.username}</li>
+            <li key={user.id}>
+              Username: {user.username} | Department: {user.department} |
+              Password: {user.password}
+            </li>
           ))}
         </ul>
         {this.state.status !== 200 && <h3>Please Log In</h3>}
