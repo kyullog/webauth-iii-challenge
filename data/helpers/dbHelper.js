@@ -21,8 +21,8 @@ function findUserByName(username) {
 }
 
 async function registerUser(user) {
-  const newUser = await db("users").insert(user);
-  return findUserById(newUser[0]);
+  const newUserId = await db("users").insert(user);
+  return findUserById(newUserId[0]);
 }
 
 function getUsers() {

@@ -18,11 +18,11 @@ ul {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 li {
-  width: 50%;
+  width: 45%;
+  border: 1px solid #9d9ca3;
 }
 
 form {
