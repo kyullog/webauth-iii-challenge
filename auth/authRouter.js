@@ -13,7 +13,9 @@ router.post("/register", async (req, res) => {
     user.password = hashword;
     const added = await db.registerUser(user);
     if (added) {
-      res.status(201).json(added);
+      console.log(added);
+      const token = createToken(added);
+      res.status(201).json({ token });
     } else {
       res.status(400).json({ error: "Username already exists" });
     }
@@ -29,7 +31,7 @@ router.post("/login", async (req, res) => {
     const checkUser = await db.findUserByName(username);
     if (checkUser && bcrypt.compareSync(password, checkUser.password)) {
       const token = createToken(checkUser);
-      res.status(200).json({ message: `Welcome ${username}`, token: token });
+      res.status(200).json({ message: `Welcome ${username}`, token });
     } else {
       res.status(400).json({ error: "Please provide proper credentials" });
     }
