@@ -6,12 +6,12 @@ class Register extends Component {
     username: "",
     department: "",
     password: "",
-    status: null
+    error: ""
   };
 
   render() {
     return (
-      <>
+      <div class="form-wrapper">
         <h2>Login</h2>
         <form onSubmit={this.submitHandler}>
           <input
@@ -43,8 +43,8 @@ class Register extends Component {
           />
           <button type="submit">Log In</button>
         </form>
-        {this.state.status && <p className="message">{this.state.status}</p>}
-      </>
+        {this.state.error && <p className="message">{this.state.error}</p>}
+      </div>
     );
   }
 
@@ -66,7 +66,7 @@ class Register extends Component {
         this.props.history.push("/users");
       })
       .catch(err => {
-        this.setState({ status: err.message });
+        this.setState({ error: "Please try another username" });
       });
   };
 }

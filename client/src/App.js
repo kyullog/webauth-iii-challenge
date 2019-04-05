@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route, NavLink, withRouter } from "react-router-dom";
+import { Route, NavLink, Link, withRouter } from "react-router-dom";
 
 import Login from "./login/Login";
 import Users from "./users/Users";
@@ -24,9 +24,9 @@ class App extends Component {
             &nbsp; | &nbsp;
             <NavLink to="/users">Users</NavLink>
             &nbsp; | &nbsp;
-            <NavLink to="/signin" onClick={this.clickHandler}>
+            <Link to="/signin" onClick={this.clickHandler}>
               Logout
-            </NavLink>
+            </Link>
           </nav>
         </header>
         <Route path="/signin" component={Login} />

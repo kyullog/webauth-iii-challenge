@@ -10,7 +10,7 @@ class Login extends Component {
 
   render() {
     return (
-      <>
+      <div class="form-wrapper">
         <h2>Login</h2>
         <form onSubmit={this.submitHandler}>
           <input
@@ -36,7 +36,7 @@ class Login extends Component {
         {this.state.error && (
           <p className="warning">Please provide correct credentials</p>
         )}
-      </>
+      </div>
     );
   }
 
