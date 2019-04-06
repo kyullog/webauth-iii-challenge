@@ -41,7 +41,7 @@ class Register extends Component {
             required
             onChange={this.changeHandler}
           />
-          <button type="submit">Log In</button>
+          <button type="submit">Register</button>
         </form>
         {this.state.error && <p className="message">{this.state.error}</p>}
       </div>
